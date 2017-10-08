@@ -36,6 +36,7 @@ module GPIO
 
   def self.read_pin(pin : Int32) : Int32
     if io = @@exported[pin]?
+      io.pos = 0
       io.gets_to_end.to_i32
     else
       pin_mode pin, GPIO::INPUT
