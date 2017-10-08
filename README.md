@@ -1,6 +1,6 @@
-# gpio
+# gpio.cr
 
-TODO: Write a description here
+GPIO access using sysfs interface in Crystal.
 
 ## Installation
 
@@ -16,6 +16,9 @@ dependencies:
 
 ```crystal
 require "gpio"
+
+GPIO.pin_mode 0, GPIO::INPUT
+puts GPIO.read_pin 0
 ```
 
 TODO: Write usage instructions here
