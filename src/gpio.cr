@@ -57,4 +57,18 @@ module GPIO
       unexport key
     end
   end
+
+  class Chip(N)
+    def self.base
+      File.read "#{SYSFS_PATH}/gpiochip#{N}/base"
+    end
+
+    def self.label
+      File.read "#{SYSFS_PATH}/gpiochip#{N}/label"
+    end
+
+    def self.ngpio
+      File.read "#{SYSFS_PATH}/gpiochip#{N}/ngpio"
+    end
+  end
 end
