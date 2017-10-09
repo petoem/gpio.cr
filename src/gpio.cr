@@ -10,8 +10,12 @@ module GPIO
   @@exported = {} of Int32 => IO
 
   private def self.export(pin : Int32)
-    File.write "#{SYSFS_PATH}/export", pin
-    @@exported[pin] = File.open "#{SYSFS_PATH}/gpio#{pin}/value", "r+"
+    begin
+      File.write "#{SYSFS_PATH}/export", pin
+      @@exported[pin] = File.open "#{SYSFS_PATH}/gpio#{pin}/value", "r+"
+    rescue
+      raise "Failed to export pin #{pin}"
+    end
   end
 
   def self.unexport(pin : Int32)
