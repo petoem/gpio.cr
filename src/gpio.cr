@@ -63,16 +63,16 @@ module GPIO
   end
 
   class Chip(N)
-    def self.base
-      File.read "#{SYSFS_PATH}/gpiochip#{N}/base"
+    def self.base : Int32
+      File.read("#{SYSFS_PATH}/gpiochip#{N}/base").to_i32
     end
 
     def self.label
       File.read "#{SYSFS_PATH}/gpiochip#{N}/label"
     end
 
-    def self.ngpio
-      File.read "#{SYSFS_PATH}/gpiochip#{N}/ngpio"
+    def self.ngpio : Int32
+      File.read("#{SYSFS_PATH}/gpiochip#{N}/ngpio").to_i32
     end
   end
 end
